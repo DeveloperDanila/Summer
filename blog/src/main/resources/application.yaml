@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: Blog
+  datasource:
+    hikari:
+      username: blog
+      password: password
+      schema: blog
+    url: ${DB_URL:jdbc:postgresql://localhost:5432/blog}
+    driver-class-name: org.postgresql.Driver
+server:
+  port: 3007
