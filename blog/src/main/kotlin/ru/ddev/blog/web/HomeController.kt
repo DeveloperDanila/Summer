@@ -8,7 +8,7 @@ class HomeController {
 
     @GetMapping("/")
     fun home(): String {
-        return "index"
+        return "index.html"
     }
 
 }

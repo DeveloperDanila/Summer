@@ -21,7 +21,7 @@ class PostService(
     fun createPostBy(title: String, body: String): Post {
         val post = Post(null, title, body)
         val user = userService.getCurrentUser()
-        val userEntity = userRepository.findByUsername(user.username)!! // TODO: find or create user
+        val userEntity = userRepository.findByUsername(user.username) // TODO: find or create user
         val entity = post.toEntity(userEntity)
         return postRepository.save(entity).let { Post.from(it) }
     }

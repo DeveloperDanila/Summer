@@ -18,4 +18,5 @@ class MvcConfig : WebMvcConfigurer {
             .addResourceHandler("/**")
             .addResourceLocations(*CLASSPATH_RESOURCE_LOCATIONS)
     }
+
 }

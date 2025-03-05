@@ -43,8 +43,23 @@ tasks.named('test') {
     useJUnitPlatform()
 }
 
-
-tasks.register("copyFrontend", Copy) {
-    from "frontend/build"
-    into ""
+def buildFrontend = tasks.register("nodeBuild", Exec) {
+    workingDir "frontend/"
+    commandLine "npm.cmd", "run", "build"
+    doLast {
+        println "Node Build Executed!"
+    }
 }
+
+def cleanFrontend = tasks.register("cleanFrontend", Delete) {
+    delete "src/main/resources/static/static"
+}
+
+def copyFrontend = tasks.register("copyFrontend", Copy) {
+    from "frontend/build"
+    into "src/main/resources/static"
+}
+
+tasks.processResources.dependsOn(copyFrontend)
+tasks.copyFrontend.dependsOn(cleanFrontend)
+tasks.copyFrontend.dependsOn(buildFrontend)
